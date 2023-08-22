@@ -1,0 +1,46 @@
+name: hotel_lemon_app
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  get: ^4.6.5
+  dots_indicator: ^3.0.0
+  shared_preferences: ^2.2.0
+  intl: ^0.18.1
+  google_fonts: ^5.1.0
+  badges: ^3.1.1
+  animated_text_kit: ^4.2.2
+  lottie: ^2.6.0
+  esc_pos_bluetooth:
+  flutter_bluetooth_basic:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
