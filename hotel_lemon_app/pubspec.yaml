@@ -21,8 +21,8 @@ dependencies:
   badges: ^3.1.1
   animated_text_kit: ^4.2.2
   lottie: ^2.6.0
-  esc_pos_bluetooth:
-  flutter_bluetooth_basic:
+  image: ^3.3.0
+  flutter_slidable: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -33,9 +33,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
+  # To add assets to your application,
   assets:
-    - assets/images/
+    - assets/
 
   # example:
   # fonts:
