@@ -20,7 +20,7 @@ class AccountPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.green,
@@ -37,150 +37,136 @@ class AccountPage extends StatelessWidget {
           // _userLoggedIn
           //     ? (userController.isLoading
           //         ?
-          Container(
-        width: double.maxFinite,
-        margin: EdgeInsets.only(top: Dimen.height20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-        ),
+          SingleChildScrollView(
         child: Column(
           children: [
             // profiles
             Container(
-              margin: const EdgeInsets.only(bottom: 10),
+              margin: const EdgeInsets.only(bottom: 10, top: 10),
               child: AppIcon(
                 icon: Icons.person,
                 backgound: ApClrs.mainBlackClr,
-                size: Dimen.height15 * 10,
+                size: Dimen.height15 * 9,
                 iconSize: Dimen.height45 + Dimen.height30,
                 iconColor: Colors.white,
               ),
             ),
             //Name
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: Dimen.height10),
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: Icons.person,
-                        backgound: ApClrs.mainClr,
-                        size: Dimen.height10 * 5,
-                        iconSize: Dimen.height15 + Dimen.height10,
-                        iconColor: ApClrs.mainBlackClr,
-                      ),
-                      bigText: BigText(
-                        text: "Anjesh Kumar",
-                        //  userController.userModel.name,
-                      ),
-                    ),
-                    //phone
-                    SizedBox(height: Dimen.height10),
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: Icons.phone,
-                        backgound: ApClrs.yllowClr,
-                        size: Dimen.height10 * 5,
-                        iconSize: Dimen.height15 + Dimen.height10,
-                        iconColor: Colors.white,
-                      ),
-                      bigText: BigText(
-                        text: "9819868628",
-                        //  userController.userModel.phone,
-                      ),
-                    ),
-                    //Email
-                    SizedBox(height: Dimen.height10),
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: Icons.email,
-                        backgound: ApClrs.yllowClr,
-                        size: Dimen.height10 * 5,
-                        iconSize: Dimen.height15 + Dimen.height10,
-                        iconColor: Colors.grey,
-                      ),
-                      bigText: BigText(
-                        text: "Anjeshshni1@gmail.com",
-                        // userController.userModel.email,
-                      ),
-                    ),
-                    //Location
-                    SizedBox(height: Dimen.height10),
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: Icons.location_on,
-                        backgound: ApClrs.yllowClr,
-                        size: Dimen.height10 * 5,
-                        iconSize: Dimen.height15 + Dimen.height10,
-                        iconColor: Colors.green,
-                      ),
-                      bigText: BigText(
-                        text: "Kapan, futsal ground",
-                      ),
-                    ),
-                    SizedBox(height: Dimen.height10),
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: Icons.message,
-                        backgound: Colors.red,
-                        size: Dimen.height10 * 5,
-                        iconSize: Dimen.height15 + Dimen.height10,
-                        iconColor: Colors.white,
-                      ),
-                      bigText: BigText(
-                        text: "Notifications",
-                      ),
-                    ),
-                    SizedBox(height: Dimen.height10),
-                    GestureDetector(
-                      onTap: () {
-                        Get.offNamed(RouteHelper.getSignIn());
-                        // if (Get.find<AuthController>().userLoggedIn()) {
-                        //   Get.find<AuthController>().clearSharedData();
-                        //   Get.find<CartController>().clear();
-                        //   Get.find<CartController>().clearCartHistory();
-                        //   Get.offNamed(RouteHelper.getSignIn());
-                        // } else {
-                        //   Get.snackbar(
-                        //     "You haven't logged in yet",
-                        //     "Please logged In",
-                        //     backgroundColor: ApClrs.mainClr,
-                        //     colorText: Colors.black,
-                        //     snackPosition: SnackPosition.TOP,
-                        //   );
-                        // }
-                      },
-                      child: AccountWidget(
-                        appIcon: AppIcon(
-                          icon: Icons.logout_rounded,
-                          backgound: Colors.grey,
-                          size: Dimen.height10 * 5,
-                          iconSize: Dimen.height15 + Dimen.height10,
-                          iconColor: ApClrs.mainBlackClr,
-                        ),
-                        bigText: BigText(
-                          text: "Logout",
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: Dimen.height10),
-                  ],
+            Column(
+              children: [
+                SizedBox(height: Dimen.height10),
+                AccountWidget(
+                  appIcon: AppIcon(
+                    icon: Icons.person,
+                    backgound: ApClrs.mainClr,
+                    size: Dimen.height10 * 5,
+                    iconSize: Dimen.height15 + Dimen.height10,
+                    iconColor: ApClrs.mainBlackClr,
+                  ),
+                  bigText: BigText(
+                    text: "Anjesh Kumar",
+                    //  userController.userModel.name,
+                    color: ApClrs.textfontgreyColor,
+                  ),
                 ),
-              ),
+                //phone
+                SizedBox(height: Dimen.height10),
+                AccountWidget(
+                  appIcon: AppIcon(
+                    icon: Icons.phone,
+                    backgound: ApClrs.yllowClr,
+                    size: Dimen.height10 * 5,
+                    iconSize: Dimen.height15 + Dimen.height10,
+                    iconColor: Colors.white,
+                  ),
+                  bigText: BigText(
+                    text: "9819868628", color: ApClrs.textfontgreyColor,
+                    //  userController.userModel.phone,
+                  ),
+                ),
+                //Email
+                SizedBox(height: Dimen.height10),
+                AccountWidget(
+                  appIcon: AppIcon(
+                    icon: Icons.email,
+                    backgound: ApClrs.yllowClr,
+                    size: Dimen.height10 * 5,
+                    iconSize: Dimen.height15 + Dimen.height10,
+                    iconColor: Colors.grey,
+                  ),
+                  bigText: BigText(
+                    text: "Anjeshshni1@gmail.com",
+                    color: ApClrs.textfontgreyColor,
+                    // userController.userModel.email,
+                  ),
+                ),
+                //Location
+                SizedBox(height: Dimen.height10),
+                AccountWidget(
+                  appIcon: AppIcon(
+                    icon: Icons.location_on,
+                    backgound: ApClrs.yllowClr,
+                    size: Dimen.height10 * 5,
+                    iconSize: Dimen.height15 + Dimen.height10,
+                    iconColor: Colors.green,
+                  ),
+                  bigText: BigText(
+                    text: "Kapan",
+                    color: ApClrs.textfontgreyColor,
+                  ),
+                ),
+                SizedBox(height: Dimen.height10),
+                AccountWidget(
+                  appIcon: AppIcon(
+                    icon: Icons.message,
+                    backgound: Colors.red,
+                    size: Dimen.height10 * 5,
+                    iconSize: Dimen.height15 + Dimen.height10,
+                    iconColor: Colors.white,
+                  ),
+                  bigText: BigText(
+                    text: "Notifications",
+                    color: ApClrs.textfontgreyColor,
+                  ),
+                ),
+                SizedBox(height: Dimen.height10),
+                GestureDetector(
+                  onTap: () {
+                    Get.offNamed(RouteHelper.getSignIn());
+                    // if (Get.find<AuthController>().userLoggedIn()) {
+                    //   Get.find<AuthController>().clearSharedData();
+                    //   Get.find<CartController>().clear();
+                    //   Get.find<CartController>().clearCartHistory();
+                    //   Get.offNamed(RouteHelper.getSignIn());
+                    // } else {
+                    //   Get.snackbar(
+                    //     "You haven't logged in yet",
+                    //     "Please logged In",
+                    //     backgroundColor: ApClrs.mainClr,
+                    //     colorText: Colors.black,
+                    //     snackPosition: SnackPosition.TOP,
+                    //   );
+                    // }
+                  },
+                  child: AccountWidget(
+                    appIcon: AppIcon(
+                      icon: Icons.logout_rounded,
+                      backgound: Colors.grey,
+                      size: Dimen.height10 * 5,
+                      iconSize: Dimen.height15 + Dimen.height10,
+                      iconColor: ApClrs.mainBlackClr,
+                    ),
+                    bigText: BigText(
+                      text: "Logout",
+                      color: ApClrs.textfontgreyColor,
+                    ),
+                  ),
+                ),
+                SizedBox(height: Dimen.height10),
+              ],
             ),
           ],
         ),
-
-        //     : CustomLoader())
-        // : Container(
-        //     color: Colors.green.shade100,
-        //     child: Center(
-        //         child: BigText(
-        //       text: "You Must Login first !!!",
-        //     )),
-        //   );
       ),
     );
   }

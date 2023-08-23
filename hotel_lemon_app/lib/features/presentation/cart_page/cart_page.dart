@@ -21,11 +21,9 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
           //For Icons
-
           Positioned(
             left: Dimen.width20,
             right: Dimen.width20,
@@ -231,7 +229,7 @@ class CartPage extends StatelessWidget {
                                                                     .product!,
                                                                 -1);
                                                           },
-                                                          child: Icon(
+                                                          child: const Icon(
                                                             Icons.remove,
                                                             color:
                                                                 ApClrs.signClr,
@@ -255,7 +253,7 @@ class CartPage extends StatelessWidget {
                                                                     .product!,
                                                                 1);
                                                           },
-                                                          child: Icon(
+                                                          child: const Icon(
                                                             Icons.add,
                                                             color:
                                                                 ApClrs.signClr,
@@ -278,8 +276,10 @@ class CartPage extends StatelessWidget {
                       ),
                     ),
                   )
-                : const NoDataPAge(
-                    text: 'You haven\'t bought anything so far!!',
+                : const Center(
+                    child: NoDataPAge(
+                      text: 'Your cart is empty',
+                    ),
                   );
           })
         ],
@@ -287,9 +287,7 @@ class CartPage extends StatelessWidget {
 
       //Bottom Nav
       bottomNavigationBar: GetBuilder<CartController>(
-        builder: (
-          cartController,
-        ) {
+        builder: (cartController) {
           return Container(
             height: Dimen.bottomNav,
             padding: EdgeInsets.only(
@@ -303,14 +301,14 @@ class CartPage extends StatelessWidget {
                   topLeft: Radius.circular(Dimen.radius20 * 2),
                   topRight: Radius.circular(Dimen.radius20 * 2),
                 ),
-                boxShadow: [
-                  const BoxShadow(color: Colors.grey, blurRadius: 10)
+                boxShadow: const [
+                  BoxShadow(color: Colors.grey, blurRadius: 10)
                 ]),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  margin: EdgeInsets.only(bottom: 0),
+                  margin: const EdgeInsets.only(bottom: 0),
                   padding: EdgeInsets.only(
                       top: Dimen.height20,
                       bottom: Dimen.height20,

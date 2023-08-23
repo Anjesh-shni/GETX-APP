@@ -39,9 +39,7 @@ class RouteHelper {
   static List<GetPage> routes = [
     GetPage(
       name: inittial,
-      page: () => const HomeNav(
-      
-      ),
+      page: () => const HomeNav(),
       transition: Transition.fadeIn,
     ),
     GetPage(

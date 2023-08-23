@@ -36,6 +36,8 @@ flutter:
   # To add assets to your application,
   assets:
     - assets/
+    - assets/icons/
+    - assets/animation/
 
   # example:
   # fonts:

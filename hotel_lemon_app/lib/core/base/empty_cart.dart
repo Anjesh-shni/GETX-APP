@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:lottie/lottie.dart';
 
 class EmptyCartPage extends StatefulWidget {
   const EmptyCartPage({Key? key}) : super(key: key);
 
   @override
-  _EmptyCartPageState createState() => _EmptyCartPageState();
+  EmptyCartPageState createState() => EmptyCartPageState();
 }
 
-class _EmptyCartPageState extends State<EmptyCartPage>
+class EmptyCartPageState extends State<EmptyCartPage>
     with TickerProviderStateMixin {
   late AnimationController _coffeeController;
   bool isGreenCoffee = false;
@@ -41,52 +40,23 @@ class _EmptyCartPageState extends State<EmptyCartPage>
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.green.shade100,
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   title: Text(
-      //     "Cart",
-      //     style: TextStyle(
-      //       fontWeight: FontWeight.bold,
-      //       fontSize: 22,
-      //       color: Colors.white,
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      //   elevation: 10,
-      //   backgroundColor: Colors.green,
-      // ),
-      body: Stack(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           AnimatedContainer(
-            height: isGreenCoffee ? (height / 1.45) : height,
-            duration: const Duration(seconds: 1),
-            decoration: BoxDecoration(
-                color: Colors.green.shade100,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(isGreenCoffee ? 25.0 : 0.0),
-                  bottomRight: Radius.circular(isGreenCoffee ? 25.0 : 0.0),
-                )),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                AnimatedContainer(
-                  // firstChild: Lottie.asset('assets/image/emptycart.json'),
-                  child: Center(
-                    child: Lottie.asset(
-                      'images/emptycart.json',
-                      controller: _coffeeController,
-                      height: height / 3,
-                      onLoaded: (composition) {
-                        _coffeeController.duration = composition.duration;
-                        _coffeeController.forward();
-                      },
-                    ),
-                  ),
-                  duration: const Duration(seconds: 2),
-                ),
-              ],
+            // firstChild: Lottie.asset('assets/image/emptycart.json'),
+            duration: const Duration(seconds: 4),
+            child: Center(
+              child: Lottie.asset(
+                'assets/animation/empty_cart.json',
+                controller: _coffeeController,
+                height: height / 2,
+                onLoaded: (composition) {
+                  _coffeeController.duration = composition.duration;
+                  _coffeeController.forward();
+                },
+              ),
             ),
           ),
         ],

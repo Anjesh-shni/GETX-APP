@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_lemon_app/utils/app_colors.dart';
+import 'package:lottie/lottie.dart';
 
 class NoDataPAge extends StatelessWidget {
   final String text;
   final String imgPath;
   const NoDataPAge(
-      {Key? key, required this.text, this.imgPath = "images/empy.png"})
+      {Key? key,
+      required this.text,
+      this.imgPath = "assets/animation/empty.json"})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Image.asset(
+        Lottie.asset(
           imgPath,
           height: MediaQuery.of(context).size.height * 0.26,
           width: MediaQuery.of(context).size.width * 0.26,
@@ -25,7 +29,7 @@ class NoDataPAge extends StatelessWidget {
           text,
           style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.0275,
-              color: Colors.amber),
+              color: ApClrs.textfontgreyColor),
           textAlign: TextAlign.center,
         ),
       ],

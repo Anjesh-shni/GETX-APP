@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_lemon_app/utils/app_colors.dart';
 import '../../../utils/app_dimension.dart';
 import 'app_icon.dart';
 import 'bigtext.dart';
@@ -16,7 +17,7 @@ class AccountWidget extends StatelessWidget {
       padding: EdgeInsets.only(
           left: Dimen.width20, top: Dimen.width10, bottom: Dimen.width10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ApClrs.greyColor,
         borderRadius: BorderRadiusDirectional.circular(Dimen.radius15),
         boxShadow: [
           BoxShadow(

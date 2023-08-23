@@ -6,7 +6,6 @@ import '../../domain/model/main_model/cart_model.dart';
 import '../../domain/model/main_model/popular_product_mooel.dart';
 import '../../../utils/app_colors.dart';
 
-
 class CartController extends GetxController {
   final CartRepo cartRepo;
 
