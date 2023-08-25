@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import '../../../config/route/routes_helper.dart';
-import '../../../utils/app_constant.dart';
+import '../../../utils/api_constant.dart';
 import '../../domain/model/main_model/popular_product_mooel.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
 import '../../getx_controller/controller/recommended_product_controller.dart';
@@ -20,7 +21,7 @@ class FoodPageBody extends StatefulWidget {
 
 class FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.9);
-  int _currPageValue = 0;
+  var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
   double _height = 230;
 
@@ -29,7 +30,7 @@ class FoodPageBodyState extends State<FoodPageBody> {
     super.initState();
     pageController.addListener(() {
       setState(() {
-        _currPageValue = pageController.page! as int;
+        _currPageValue = pageController.page!;
       });
     });
   }
@@ -50,70 +51,15 @@ class FoodPageBodyState extends State<FoodPageBody> {
                       controller: pageController,
                       itemCount: popularProducts.popularProductList.length,
                       itemBuilder: (context, index) {
-                        return
-                            //  GestureDetector(
-                            //   onTap: () {
-                            //     Get.toNamed(RouteHelper.getPopularFood(
-                            //         index, "home", index));
-                            //   },
-                            //   child: Container(
-                            //     margin:
-                            //         EdgeInsets.only(left: 5, right: 5, bottom: 10),
-                            //     height: 60,
-                            //     width: double.maxFinite,
-                            //     decoration: BoxDecoration(
-                            //         borderRadius: BorderRadius.circular(5),
-                            //         boxShadow: [
-                            //           BoxShadow(
-                            //             color: Colors.grey,
-                            //             blurRadius: 10,
-                            //             offset: Offset(0, 3),
-                            //           ),
-                            //           BoxShadow(
-                            //             color: Colors.green.shade400,
-                            //             offset: Offset(-5, 0),
-                            //           ),
-                            //           BoxShadow(
-                            //             color: Colors.green.shade400,
-                            //             offset: Offset(5, 0),
-                            //           ),
-                            //         ],
-                            //         color: Colors.green.shade200),
-                            //     child: Row(
-                            //       // mainAxisAlignment: MainAxisAlignment.center,
-                            //       // crossAxisAlignment: CrossAxisAlignment.start,
-                            //       children: [
-                            //         SizedBox(
-                            //           width: 10,
-                            //         ),
-                            //         Column(
-                            //           mainAxisAlignment: MainAxisAlignment.center,
-                            //           crossAxisAlignment: CrossAxisAlignment.start,
-                            //           children: [
-                            //             Center(
-                            //               child: BigText(
-                            //                 text: popularProducts
-                            //                     .popularProductList[index].name!,
-                            //                 size: 20,
-                            //                 color: Colors.black,
-                            //               ),
-                            //             ),
-                            //           ],
-                            //         ),
-                            //       ],
-                            //     ),
-                            //   ),
-                            // );
-
-                            _buildPageItem(index,
-                                popularProducts.popularProductList[index]);
+                        return _buildPageItem(
+                            index, popularProducts.popularProductList[index]);
                       }),
                 )
               : const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.green,
-                ),
-              );
+                  child: CircularProgressIndicator(
+                    color: Colors.green,
+                  ),
+                );
         }),
 
         //Dots indicator
@@ -122,11 +68,11 @@ class FoodPageBodyState extends State<FoodPageBody> {
             dotsCount: popularProducts.popularProductList.isEmpty
                 ? 1
                 : popularProducts.popularProductList.length,
-            position: _currPageValue,
+            position: _currPageValue.floor(),
             decorator: DotsDecorator(
-              activeColor: Colors.green,
-              size: const Size.square(9.0),
-              activeSize: const Size(18.0, 9.0),
+              activeColor: Colors.green.shade400,
+              size: const Size.square(10.0),
+              activeSize: const Size(16.0, 9.0),
               activeShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
             ),
@@ -187,8 +133,8 @@ class FoodPageBodyState extends State<FoodPageBody> {
                                 index, "home", index));
                           },
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 5, right: 5, bottom: 10),
+                            margin: const EdgeInsets.only(
+                                left: 5, right: 5, bottom: 10),
                             height: 100,
                             decoration: BoxDecoration(
                               color: Colors.green.shade200,
@@ -205,7 +151,7 @@ class FoodPageBodyState extends State<FoodPageBody> {
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: NetworkImage(
+                                        image: CachedNetworkImageProvider(
                                           AppConstants.BASE_URL +
                                               AppConstants.UPLOAD_URL +
                                               recommendedProducts
@@ -256,10 +202,10 @@ class FoodPageBodyState extends State<FoodPageBody> {
                       },
                     )
                   : const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.green,
-                    ),
-                  );
+                      child: CircularProgressIndicator(
+                        color: Colors.green,
+                      ),
+                    );
             },
           ),
         ),
@@ -268,7 +214,7 @@ class FoodPageBodyState extends State<FoodPageBody> {
   }
 
   Widget _buildPageItem(int index, ProductModel popularProducts) {
-    Matrix4 matrix =  Matrix4.identity();
+    Matrix4 matrix = Matrix4.identity();
 
     if (index == _currPageValue.floor()) {
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
@@ -309,7 +255,7 @@ class FoodPageBodyState extends State<FoodPageBody> {
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(
+                  image: CachedNetworkImageProvider(
                     AppConstants.BASE_URL +
                         AppConstants.UPLOAD_URL +
                         popularProducts.img!,

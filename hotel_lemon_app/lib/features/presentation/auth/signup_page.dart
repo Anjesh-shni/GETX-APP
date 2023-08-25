@@ -21,9 +21,9 @@ class SignUpPage extends StatelessWidget {
     var nameController = TextEditingController();
     var phoneController = TextEditingController();
     var signUpImage = [
-      "t.png",
-      "go.png",
-      "ff.png",
+      "google.png",
+      "facebook.png",
+      "twitter.png",
     ];
     void _registration(AuthController authController) {
       String name = nameController.text.trim();
@@ -77,8 +77,9 @@ class SignUpPage extends StatelessWidget {
                         // margin: EdgeInsets.only(top: Dimen.height30 * 2),
                         child: const Center(
                           child: CircleAvatar(
-                            backgroundImage: AssetImage("images/acc.png"),
-                            radius: 60,
+                            backgroundImage:
+                                AssetImage("assets/icons/logo_w.jpeg"),
+                            radius: 150,
                             backgroundColor: Colors.white,
                           ),
                         ),
@@ -126,20 +127,20 @@ class SignUpPage extends StatelessWidget {
                               color: ApClrs.mainClr),
                           child: Center(
                             child: BigText(
-                              text: "Sign up",
+                              text: "Create account",
                               // size: Dimen.font20,
                             ),
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: Dimen.height10,
+                        height: Dimen.height20,
                       ),
                       RichText(
                         text: TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.back(),
-                          text: "Have an account already?",
+                          text: "Already have an account?",
                           style: TextStyle(
                             color: Colors.grey[500],
                             fontSize: 16,
@@ -148,16 +149,22 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: Dimen.screenHeight * 0.04,
+                        height: Dimen.screenHeight * 0.05,
                       ),
                       RichText(
                         text: TextSpan(
-                          text: "Sign up using one of the fallowing methods",
+                          text: "Or",
                           style: TextStyle(
                             color: Colors.grey[500],
                             fontSize: 16,
                           ),
                         ),
+                      ),
+                      const Divider(
+                        thickness: 0.4,
+                        color: ApClrs.blackColor,
+                        endIndent: 25,
+                        indent: 25,
                       ),
                       Wrap(
                         children: List.generate(
@@ -165,9 +172,10 @@ class SignUpPage extends StatelessWidget {
                           (index) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CircleAvatar(
+                              backgroundColor: Colors.white,
                               radius: Dimen.radius30,
-                              backgroundImage:
-                                  AssetImage("images/${signUpImage[index]}"),
+                              backgroundImage: AssetImage(
+                                  "assets/icons/${signUpImage[index]}"),
                             ),
                           ),
                         ),

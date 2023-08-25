@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import '../../../../config/route/routes_helper.dart';
-import '../../../../utils/app_constant.dart';
+import '../../../utils/api_constant.dart';
 import '../../domain/model/main_model/popular_product_mooel.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
 import '../../getx_controller/controller/recommended_product_controller.dart';
@@ -20,7 +21,7 @@ class FoodPageBody extends StatefulWidget {
 
 class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.9);
-  int _currPageValue = 0;
+  var _currPageValue = 0;
   double _scaleFactor = 0.8;
   double _height = 230;
 
@@ -50,70 +51,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       controller: pageController,
                       itemCount: popularProducts.popularProductList.length,
                       itemBuilder: (context, index) {
-                        return
-                            //  GestureDetector(
-                            //   onTap: () {
-                            //     Get.toNamed(RouteHelper.getPopularFood(
-                            //         index, "home", index));
-                            //   },
-                            //   child: Container(
-                            //     margin:
-                            //         EdgeInsets.only(left: 5, right: 5, bottom: 10),
-                            //     height: 60,
-                            //     width: double.maxFinite,
-                            //     decoration: BoxDecoration(
-                            //         borderRadius: BorderRadius.circular(5),
-                            //         boxShadow: [
-                            //           BoxShadow(
-                            //             color: Colors.grey,
-                            //             blurRadius: 10,
-                            //             offset: Offset(0, 3),
-                            //           ),
-                            //           BoxShadow(
-                            //             color: Colors.green.shade400,
-                            //             offset: Offset(-5, 0),
-                            //           ),
-                            //           BoxShadow(
-                            //             color: Colors.green.shade400,
-                            //             offset: Offset(5, 0),
-                            //           ),
-                            //         ],
-                            //         color: Colors.green.shade200),
-                            //     child: Row(
-                            //       // mainAxisAlignment: MainAxisAlignment.center,
-                            //       // crossAxisAlignment: CrossAxisAlignment.start,
-                            //       children: [
-                            //         SizedBox(
-                            //           width: 10,
-                            //         ),
-                            //         Column(
-                            //           mainAxisAlignment: MainAxisAlignment.center,
-                            //           crossAxisAlignment: CrossAxisAlignment.start,
-                            //           children: [
-                            //             Center(
-                            //               child: BigText(
-                            //                 text: popularProducts
-                            //                     .popularProductList[index].name!,
-                            //                 size: 20,
-                            //                 color: Colors.black,
-                            //               ),
-                            //             ),
-                            //           ],
-                            //         ),
-                            //       ],
-                            //     ),
-                            //   ),
-                            // );
-
-                            _buildPageItem(index,
-                                popularProducts.popularProductList[index]);
+                        return _buildPageItem(
+                            index, popularProducts.popularProductList[index]);
                       }),
                 )
-              : Container(
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.green,
-                    ),
+              : const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.green,
                   ),
                 );
         }),
@@ -141,7 +85,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
         // Recommended text
         Container(
-          margin: EdgeInsets.only(left: 20),
+          margin: const EdgeInsets.only(left: 20),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -189,8 +133,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 index, "home", index));
                           },
                           child: Container(
-                            margin:
-                                EdgeInsets.only(left: 5, right: 5, bottom: 10),
+                            margin: const EdgeInsets.only(
+                                left: 5, right: 5, bottom: 10),
                             height: 100,
                             decoration: BoxDecoration(
                               color: Colors.green.shade200,
@@ -207,7 +151,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: NetworkImage(
+                                        image: CachedNetworkImageProvider(
                                           AppConstants.BASE_URL +
                                               AppConstants.UPLOAD_URL +
                                               recommendedProducts
@@ -230,7 +174,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                             .name!,
                                         size: 16,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       SmallTxt(
@@ -240,7 +184,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                     ],
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 IconButton(
                                   onPressed: () {
                                     Get.toNamed(RouteHelper.getRecommendedFood(
@@ -272,7 +216,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   }
 
   Widget _buildPageItem(int index, ProductModel popularProducts) {
-    Matrix4 matrix =  Matrix4.identity();
+    Matrix4 matrix = Matrix4.identity();
 
     if (index == _currPageValue.floor()) {
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
@@ -307,13 +251,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         child: Stack(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 5, right: 5, top: 10),
+              margin: const EdgeInsets.only(left: 5, right: 5, top: 10),
               height: 230,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(
+                  image: CachedNetworkImageProvider(
                     AppConstants.BASE_URL +
                         AppConstants.UPLOAD_URL +
                         popularProducts.img!,
@@ -324,24 +268,24 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                margin: EdgeInsets.only(left: 40, right: 40, bottom: 15),
+                margin: const EdgeInsets.only(left: 40, right: 40, bottom: 15),
                 height: 50,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
-                      BoxShadow(
+                      const BoxShadow(
                         color: Colors.grey,
                         blurRadius: 10,
                         offset: Offset(0, 3),
                       ),
                       BoxShadow(
                         color: Colors.green.shade100,
-                        offset: Offset(-5, 0),
+                        offset: const Offset(-5, 0),
                       ),
                       BoxShadow(
                         color: Colors.green.shade100,
-                        offset: Offset(5, 0),
+                        offset: const Offset(5, 0),
                       ),
                     ],
                     color: Colors.green.shade100),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/base/no_data_page.dart';
 import '../../../config/route/routes_helper.dart';
-import '../../../utils/app_constant.dart';
+import '../../../utils/api_constant.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/cart_controller.dart';

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../data/repository/cart_repo.dart';
 import '../../domain/model/main_model/cart_model.dart';
 import '../../domain/model/main_model/popular_product_mooel.dart';
@@ -44,24 +42,33 @@ class CartController extends GetxController {
       }
     } else {
       if (quantity > 0) {
-        _items.putIfAbsent(product.id!, () {
-          return CartModel(
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            img: product.img,
-            quantity: quantity,
-            isExist: true,
-            time: DateTime.now().toString(),
-            product: product,
-          );
-        });
+        Get.snackbar(
+          "Added",
+          "${product.name!} is being added to the cart",
+          backgroundColor: ApClrs.backGroundColor,
+          colorText: ApClrs.textfontgreyColor,
+        );
+        _items.putIfAbsent(
+          product.id!,
+          () {
+            return CartModel(
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              img: product.img,
+              quantity: quantity,
+              isExist: true,
+              time: DateTime.now().toString(),
+              product: product,
+            );
+          },
+        );
       } else {
         Get.snackbar(
-          "Product count",
-          "You should have add atleast one item in the cart!",
-          backgroundColor: ApClrs.mainClr,
-          colorText: Colors.black,
+          "Please add item",
+          "You should have add atleast 1 item in your cart",
+          backgroundColor: ApClrs.backGroundColor,
+          colorText: ApClrs.textfontgreyColor,
           snackPosition: SnackPosition.TOP,
         );
       }

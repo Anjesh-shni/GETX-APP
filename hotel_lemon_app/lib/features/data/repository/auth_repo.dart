@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../utils/app_constant.dart';
+import '../../../utils/api_constant.dart';
 import '../api/api_client.dart';
 
 class AuthRepo {

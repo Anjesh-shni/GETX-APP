@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../config/route/routes_helper.dart';
-import '../../../utils/app_constant.dart';
+import '../../../utils/api_constant.dart';
 import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/cart_controller.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
@@ -9,7 +10,6 @@ import '../widget/app_column.dart';
 import '../widget/app_icon.dart';
 import '../widget/bigtext.dart';
 import '../widget/expandble_text.dart';
-
 
 class PopularFoodDetails extends StatelessWidget {
   final int index;
@@ -43,7 +43,7 @@ class PopularFoodDetails extends StatelessWidget {
               height: 340,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(AppConstants.BASE_URL +
+                  image: CachedNetworkImageProvider(AppConstants.BASE_URL +
                       AppConstants.UPLOAD_URL +
                       product.img!),
                   fit: BoxFit.cover,
@@ -223,6 +223,7 @@ class PopularFoodDetails extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   popularProducts.addItem(product);
+                
                 },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 0, right: 15),
@@ -238,7 +239,7 @@ class PopularFoodDetails extends StatelessWidget {
                   child: Row(
                     children: [
                       BigText(
-                        text: "\$ ${product.price!}|| Add to cart",
+                        text: "रु ${product.price!} || Add to cart",
                       ),
                     ],
                   ),

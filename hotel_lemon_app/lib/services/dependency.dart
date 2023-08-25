@@ -11,7 +11,7 @@ import '../features/getx_controller/controller/cart_controller.dart';
 import '../features/getx_controller/controller/popular_product_controller.dart';
 import '../features/getx_controller/controller/recommended_product_controller.dart';
 import '../features/getx_controller/controller/user_controller.dart';
-import '../utils/app_constant.dart';
+import '../utils/api_constant.dart';
 
 Future<void> init() async {
   // //shredPrefrences

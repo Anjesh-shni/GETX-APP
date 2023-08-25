@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ import '../widget/app_icon.dart';
 import '../widget/bigtext.dart';
 import '../widget/smalltext.dart';
 import '../../../utils/app_colors.dart';
-import '../../../utils/app_constant.dart';
+import '../../../utils/api_constant.dart';
 import '../../../utils/app_dimension.dart';
 
 class CartHistory extends StatelessWidget {
@@ -54,11 +55,13 @@ class CartHistory extends StatelessWidget {
         var outPutFormat = DateFormat("MM/dd/yyyy hh:mm a");
         outputDate = outPutFormat.format(inputDate);
       }
-      return BigText(text: outputDate);
+      return BigText(
+        text: outputDate,
+        color: ApClrs.textfontgreyColor,
+      );
     }
 
     return Scaffold(
-      backgroundColor: Colors.green.shade100,
       body: Column(
         children: [
           //App Bar
@@ -90,8 +93,8 @@ class CartHistory extends StatelessWidget {
 
           //
           GetBuilder<CartController>(
-            builder: (_cartController) {
-              return _cartController.getCartHistoryList().isNotEmpty
+            builder: (cartController) {
+              return cartController.getCartHistoryList().isNotEmpty
                   ? Expanded(
                       child: Container(
                         margin: EdgeInsets.only(
@@ -105,13 +108,13 @@ class CartHistory extends StatelessWidget {
                             children: [
                               for (int i = 0; i < orderTimes.length; i++)
                                 Slidable(
-                                  key: const ValueKey(0),
+                                  key: ValueKey(orderTimes.length),
                                   endActionPane: ActionPane(
                                     motion: const ScrollMotion(),
                                     dismissible:
                                         DismissiblePane(onDismissed: () {
-                                      _cartController.clear();
-                                      _cartController.clearCartHistory();
+                                      cartController.clear();
+                                      cartController.clearCartHistory();
                                     }),
                                     children: const [
                                       SlidableAction(
@@ -133,7 +136,7 @@ class CartHistory extends StatelessWidget {
                                         width: 1,
                                       ),
                                     ),
-                                    height: Dimen.height40 * 3,
+                                    height: Dimen.height40 * 3.1,
                                     width: double.infinity,
                                     padding: EdgeInsets.only(
                                         left: Dimen.width5,
@@ -182,7 +185,7 @@ class CartHistory extends StatelessWidget {
                                                           image:
                                                               DecorationImage(
                                                             fit: BoxFit.cover,
-                                                            image: NetworkImage(AppConstants
+                                                            image: CachedNetworkImageProvider(AppConstants
                                                                     .BASE_URL +
                                                                 AppConstants
                                                                     .UPLOAD_URL +
@@ -285,7 +288,7 @@ class CartHistory extends StatelessWidget {
                         ),
                       ),
                     )
-                  : Container(
+                  : SizedBox(
                       height: Dimen.screenHeight - 160,
                       child: const EmptyCartPage(),
                     );

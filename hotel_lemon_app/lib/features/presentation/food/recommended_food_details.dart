@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hotel_lemon_app/utils/app_constant.dart';
+import 'package:hotel_lemon_app/utils/api_constant.dart';
 import '../../../config/route/routes_helper.dart';
 import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/cart_controller.dart';
@@ -126,8 +127,10 @@ class RecommendedFoodDetails extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               //Images
 
-              background: Image.network(
-                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
+              background: CachedNetworkImage(
+                imageUrl: AppConstants.BASE_URL +
+                    AppConstants.UPLOAD_URL +
+                    product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -254,7 +257,7 @@ class RecommendedFoodDetails extends StatelessWidget {
                         color: Colors.green.shade100),
                     child: Row(
                       children: [
-                        BigText(text: "\$ ${product.price!}|| Add to cart"),
+                        BigText(text: "रु ${product.price!} || Add to cart"),
                       ],
                     ),
                   ),

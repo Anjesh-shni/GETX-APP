@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../../../utils/app_constant.dart';
+import '../../../utils/api_constant.dart';
 import '../api/api_client.dart';
 
 class PopularProductRepo extends GetxService {

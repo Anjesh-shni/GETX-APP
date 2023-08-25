@@ -59,12 +59,14 @@ class SignInPage extends StatelessWidget {
                         height: Dimen.screenHeight * 0.05,
                       ),
                       Container(
-                        height: Dimen.screenHeight * 0.25,
-                        margin: EdgeInsets.only(top: Dimen.height30 * 2),
+                        height: 300,
+                        width: 300,
                         child: const Center(
                           child: CircleAvatar(
-                            backgroundImage: AssetImage("images/acc.png"),
-                            radius: 60,
+                            backgroundImage: AssetImage(
+                              "assets/icons/logo_w.jpeg",
+                            ),
+                            radius: 300,
                             backgroundColor: Colors.white,
                           ),
                         ),
@@ -77,9 +79,9 @@ class SignInPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              "Hello",
+                              "Welcome",
                               style: TextStyle(
-                                  fontSize: 60,
+                                  fontSize: 40,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
@@ -88,7 +90,7 @@ class SignInPage extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.grey[500]),
+                                  color: Colors.grey[600]),
                             ),
                             SizedBox(
                               height: Dimen.height10,
@@ -98,6 +100,7 @@ class SignInPage extends StatelessWidget {
                       ),
                       AppTextField(
                           icon: Icons.phone,
+                          
                           textController: emailController,
                           hintText: "Email"),
                       SizedBox(
@@ -154,7 +157,7 @@ class SignInPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: Dimen.screenHeight * 0.05,
+                        height: Dimen.screenHeight * 0.10,
                       ),
                       RichText(
                         text: TextSpan(

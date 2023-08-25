@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hotel_lemon_app/utils/app_colors.dart';
 import '../../data/repository/popular_product_repo.dart';
 import '../../domain/model/main_model/cart_model.dart';
 import '../../domain/model/main_model/popular_product_mooel.dart';
@@ -50,8 +50,8 @@ class PopularProductController extends GetxController {
   int checkQuantity(int quantity) {
     if ((_inCartItem + quantity) < 0) {
       Get.snackbar("You have 0 product", "You Can't reduce more!",
-          backgroundColor: Colors.green.shade200,
-          colorText: Colors.black,
+          backgroundColor: ApClrs.backGroundColor,
+          colorText: ApClrs.textfontgreyColor,
           snackPosition: SnackPosition.TOP);
       // if (_inCartItem > 0) {
       //   _quantity = -_quantity;
@@ -64,10 +64,10 @@ class PopularProductController extends GetxController {
       return 0;
     } else if ((_inCartItem + quantity) > 20) {
       Get.snackbar(
-        "You have 20 products, Please Checkout First ",
-        "You Can't add more!",
-        backgroundColor: Colors.green.shade200,
-        colorText: Colors.black,
+        "You have 20 products in cart",
+        "Please check out 20 item first",
+        backgroundColor: ApClrs.backGroundColor,
+        colorText: ApClrs.textfontgreyColor,
       );
       return 20;
     } else {

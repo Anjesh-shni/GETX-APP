@@ -39,7 +39,7 @@ class ProduListCrad extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  "${products.price.toString()}€",
+                  "रु ${products.price.toString()}",
                   style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               ],

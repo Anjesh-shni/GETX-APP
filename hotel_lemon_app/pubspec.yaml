@@ -23,6 +23,7 @@ dependencies:
   lottie: ^2.6.0
   image: ^3.3.0
   flutter_slidable: ^3.0.0
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:

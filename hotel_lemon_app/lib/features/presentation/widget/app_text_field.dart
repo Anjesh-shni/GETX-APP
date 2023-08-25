@@ -3,7 +3,6 @@ import 'package:hotel_lemon_app/utils/app_dimension.dart';
 
 import '../../../utils/app_colors.dart';
 
-
 // ignore: must_be_immutable
 class AppTextField extends StatelessWidget {
   final TextEditingController textController;
@@ -35,13 +34,13 @@ class AppTextField extends StatelessWidget {
             )
           ]),
       child: TextField(
-        obscureText: isObscure?true:false,
+        obscureText: isObscure ? true : false,
         controller: textController,
         decoration: InputDecoration(
           hintText: hintText,
           prefixIcon: Icon(
             icon,
-            color: ApClrs.yllowClr,
+            color: ApClrs.mainClr,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimen.radius15),

@@ -17,13 +17,13 @@ class AccountWidget extends StatelessWidget {
       padding: EdgeInsets.only(
           left: Dimen.width20, top: Dimen.width10, bottom: Dimen.width10),
       decoration: BoxDecoration(
-        color: ApClrs.greyColor,
+        color: ApClrs.bodyColor,
         borderRadius: BorderRadiusDirectional.circular(Dimen.radius15),
         boxShadow: [
           BoxShadow(
-            blurRadius: 2,
+            blurRadius: 4,
             offset: const Offset(0, 5),
-            color: Colors.grey.withOpacity(1),
+            color: Colors.grey.withOpacity(.5),
           ),
         ],
       ),

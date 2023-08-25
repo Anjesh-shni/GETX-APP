@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   late List<AnimatedTextExample> _examples;
-  int _index = 0;
+  final int _index = 0;
 
   @override
   void initState() {
@@ -40,6 +40,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.green.shade100,
       body: RefreshIndicator(
+        color: Colors.green,
         onRefresh: () async {
           await _loadResources();
         },
