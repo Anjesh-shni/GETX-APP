@@ -47,11 +47,19 @@ class SignUpPage extends StatelessWidget {
       } else {
         // showCuastomSnackBAr("Your Account has been created!", title: "Welcome");
         SignUpBody signUpBody = SignUpBody(
-            name: name, phone: phone, email: email, password: password);
+          name: name,
+          phone: phone,
+          email: email,
+          password: password,
+        );
 
         authController.registration(signUpBody).then((status) {
           if (status.isSuccess) {
-            print("Success Registration");
+            Get.snackbar("Success",
+                "your account is created, please login with your credentials",
+                backgroundColor: ApClrs.mainClr,
+                colorText: ApClrs.blackColor,
+                snackPosition: SnackPosition.TOP);
             Get.offNamed(RouteHelper.getInitial());
           } else {
             showCuastomSnackBAr(status.message);

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../config/route/routes_helper.dart';
 import '../../../core/base/no_data_page.dart';
+import '../../getx_controller/controller/auth_controller.dart';
 import '../../getx_controller/controller/cart_controller.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
 import '../../getx_controller/controller/recommended_product_controller.dart';
@@ -338,27 +339,18 @@ class CartPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if (cartController.getItems.length > 0) {
+                          if (Get.find<AuthController>().userLoggedIn()) {
                             cartController.addToHistory();
+                          } else {
                             Get.snackbar(
-                              "Saved",
-                              "Your order has been saved to cart history",
+                              "PLease login",
+                              "To access this function, you need to login-in",
                               backgroundColor: ApClrs.bodyColor,
                               colorText: ApClrs.textfontgreyColor,
                               snackPosition: SnackPosition.TOP,
                             );
-                          } else {}
-                          // if (cartController.getItems.isNotEmpty) {
-                          //   Get.to(const PrintCheckout());
-                          // } else {}
-                          // cartController.addToHistory();
-                          // Get.to(PrintCheckout());
-
-                          // if (Get.find<AuthController>().userLoggedIn()) {
-                          //   cartController.addToHistory();
-                          // } else {
-                          //   Get.toNamed(RouteHelper.getSignIn());
-                          // }
+                            Get.toNamed(RouteHelper.getSignIn());
+                          }
                         },
                         child: Container(
                           margin: const EdgeInsets.only(bottom: 0),

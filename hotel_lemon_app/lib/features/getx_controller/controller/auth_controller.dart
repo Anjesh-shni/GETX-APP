@@ -4,8 +4,6 @@ import '../../data/repository/auth_repo.dart';
 import '../../domain/model/main_model/response_model.dart';
 import '../../domain/model/main_model/sign_up_body.dart';
 
-
-
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
 
@@ -17,8 +15,7 @@ class AuthController extends GetxController implements GetxService {
   Future<ResponseModel> registration(SignUpBody signUpBody) async {
     _isLoading = true;
     update();
-    authRepo.registration(SignUpBody, signUpBody);
-    Response response = await authRepo.registration(SignUpBody, signUpBody);
+    Response response = await authRepo.registration(signUpBody);
     late ResponseModel responseModel;
 
     if (response.statusCode == 200) {
@@ -41,9 +38,7 @@ class AuthController extends GetxController implements GetxService {
     late ResponseModel responseModel;
 
     if (response.statusCode == 200) {
-      print("Backend Tocken");
       authRepo.saveUserToken(response.body["token"]);
-      print("my token is " + response.body["token"].toString());
 
       responseModel = ResponseModel(true, response.body["token"]);
     } else {

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hotel_lemon_app/features/domain/model/main_model/sign_up_body.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/api_constant.dart';
 import '../api/api_client.dart';
@@ -9,12 +10,12 @@ class AuthRepo {
 
   AuthRepo({required this.apiClient, required this.sharedPreferences});
 
-  Future<Response> registration(SignUpBody, signUpBody) async {
+  Future<Response> registration(SignUpBody signUpBody) async {
     return await apiClient.postData(
         AppConstants.REGISTRATION_URI, signUpBody.toJson());
   }
 
-  Future<String?> getUserToken() async {
+  Future<String> getUserToken() async {
     return await sharedPreferences.getString(AppConstants.TOKEN) ?? "None";
   }
 
@@ -36,10 +37,9 @@ class AuthRepo {
   Future<void> saveUserNumberAndPassword(String number, String password) async {
     try {
       await sharedPreferences.setString(AppConstants.PHONE, number);
-
       await sharedPreferences.setString(AppConstants.PASSWORD, password);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

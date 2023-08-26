@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hotel_lemon_app/features/presentation/home/homepage.dart';
-import 'package:hotel_lemon_app/features/presentation/auth/signup_page.dart';
+import 'package:hotel_lemon_app/features/presentation/auth/sign_up_page.dart';
 import '../../features/presentation/cart_page/cart_page.dart';
 import '../../features/presentation/food/popular_food_details.dart';
 import '../../features/presentation/food/recommended_food_details.dart';
