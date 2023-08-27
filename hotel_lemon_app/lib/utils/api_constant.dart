@@ -19,5 +19,5 @@ class AppConstants {
   static const String PASSWORD = "";
   static const String UPLOAD_URL = "/uploads/";
   static const String CART_LIST = "Cart-List";
-  static const String CART_HISTORY_LIST = "cart-history-";
+  static const String CART_HISTORY_LIST = "cart-history";
 }

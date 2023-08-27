@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../utils/api_constant.dart';
 
 class ApiClient extends GetConnect implements GetxService {
@@ -12,18 +11,20 @@ class ApiClient extends GetConnect implements GetxService {
 
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     baseUrl = appBaseUrl;
-    timeout = const Duration(seconds: 5);
-    token = AppConstants.TOKEN;
-    //  sharedPreferences.getString(AppConstants.TOKEN)!;
+    timeout = const Duration(seconds: 20);
+    token = sharedPreferences.getString(AppConstants.TOKEN)!;
+
+    // AppConstants.TOKEN;
+
     _mainHeaders = {
       "Content-type": "application/json; charset=UTF-8 ",
-      "Authoraization": "Bearer $token",
+      "Authorization": "Bearer $token",
     };
   }
   void updateHeader(String token) {
     _mainHeaders = {
       "Content-type": "application/json; charset=UTF-8 ",
-      "Authoraization": "Bearer $token",
+      "Authorization": "Bearer $token",
     };
   }
 
@@ -37,10 +38,8 @@ class ApiClient extends GetConnect implements GetxService {
   }
 
   Future<Response> postData(String uri, dynamic body) async {
-    print(body.toString());
     try {
       Response response = await post(uri, body, headers: _mainHeaders);
-      print(response.toString());
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());

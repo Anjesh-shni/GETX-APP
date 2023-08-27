@@ -24,17 +24,16 @@ class SignInPage extends StatelessWidget {
 
       if (email.isEmpty) {
         showCuastomSnackBAr("Type in your email", title: "Email");
-      } else if (!GetUtils.isEmail(email)) {
-        showCuastomSnackBAr("Type valid email address", title: "Invalid email");
-      } else if (password.isEmpty) {
+      }
+      // else if (!GetUtils.isEmail(email)) {
+      //   showCuastomSnackBAr("Type valid email address", title: "Invalid email");
+      // }
+      else if (password.isEmpty) {
         showCuastomSnackBAr("Type in your password", title: "password");
       } else if (password.length < 6) {
         showCuastomSnackBAr("password cannot be less than 6-character",
             title: "password");
       } else {
-        showCuastomSnackBAr("Your Account  has been created!",
-            title: "Welcome");
-
         authController.login(email, password).then((status) {
           if (status.isSuccess) {
             Get.toNamed(RouteHelper.getInitial());
@@ -100,7 +99,7 @@ class SignInPage extends StatelessWidget {
                       AppTextField(
                           icon: Icons.phone,
                           textController: emailController,
-                          hintText: "Email"),
+                          hintText: "Phone"),
                       SizedBox(
                         height: Dimen.height20,
                       ),

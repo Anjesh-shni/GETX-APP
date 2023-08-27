@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:get/get.dart';
 import '../../data/repository/auth_repo.dart';
 import '../../domain/model/main_model/response_model.dart';
@@ -29,17 +28,16 @@ class AuthController extends GetxController implements GetxService {
     return responseModel;
   }
 
-  Future<ResponseModel> login(String email, String password) async {
-    print("getttting tokken...........");
-    print(jsonEncode(authRepo.getUserToken().toString()));
+  Future<ResponseModel> login(String phone, String password) async {
+    // print("getting token" + authRepo.getUserToken().toString());
     _isLoading = true;
     update();
-    Response response = await authRepo.login(email, password);
+    Response response = await authRepo.login(phone, password);
     late ResponseModel responseModel;
 
     if (response.statusCode == 200) {
       authRepo.saveUserToken(response.body["token"]);
-
+      // print(response.body["token"].toString());
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
       responseModel = ResponseModel(false, response.statusText!);
