@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hotel_lemon_app/core/base/custom_loader.dart';
+import 'package:hotel_lemon_app/features/getx_controller/map_controller/location_controller.dart';
 import '../../../config/route/routes_helper.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_dimension.dart';
@@ -102,19 +103,52 @@ class AccountPage extends StatelessWidget {
                               ),
                               //Location
                               SizedBox(height: Dimen.height10),
-                              AccountWidget(
-                                appIcon: AppIcon(
-                                  icon: Icons.location_on,
-                                  backgound: ApClrs.yllowClr,
-                                  size: Dimen.height10 * 5,
-                                  iconSize: Dimen.height15 + Dimen.height10,
-                                  iconColor: Colors.green,
-                                ),
-                                bigText: BigText(
-                                  text: "Kapan",
-                                  color: ApClrs.textfontgreyColor,
-                                ),
-                              ),
+                              GetBuilder<LocationController>(
+                                  builder: (locationController) {
+                                if (userLoggedIn &&
+                                    locationController.addressList.isNotEmpty) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.offNamed(
+                                          RouteHelper.getAddressPage());
+                                    },
+                                    child: AccountWidget(
+                                      appIcon: AppIcon(
+                                        icon: Icons.location_on,
+                                        backgound: ApClrs.yllowClr,
+                                        size: Dimen.height10 * 5,
+                                        iconSize:
+                                            Dimen.height15 + Dimen.height10,
+                                        iconColor: Colors.green,
+                                      ),
+                                      bigText: BigText(
+                                        text: "Fill your address",
+                                        color: ApClrs.textfontgreyColor,
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(RouteHelper.getAddressPage());
+                                    },
+                                    child: AccountWidget(
+                                      appIcon: AppIcon(
+                                        icon: Icons.location_on,
+                                        backgound: ApClrs.yllowClr,
+                                        size: Dimen.height10 * 5,
+                                        iconSize:
+                                            Dimen.height15 + Dimen.height10,
+                                        iconColor: Colors.green,
+                                      ),
+                                      bigText: BigText(
+                                        text: "Your address",
+                                        color: ApClrs.textfontgreyColor,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              }),
                               SizedBox(height: Dimen.height10),
                               AccountWidget(
                                 appIcon: AppIcon(
@@ -139,6 +173,8 @@ class AccountPage extends StatelessWidget {
                                     Get.find<CartController>().clear();
                                     Get.find<CartController>()
                                         .clearCartHistory();
+                                    Get.find<LocationController>()
+                                        .clearUserAddress();
                                     Get.offNamed(RouteHelper.getSignIn());
                                   } else {
                                     Get.snackbar(

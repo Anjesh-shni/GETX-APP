@@ -4,8 +4,11 @@ import 'package:hotel_lemon_app/features/presentation/widget/bigtext.dart';
 
 import '../../utils/app_colors.dart';
 
-void showCuastomSnackBAr(String messege,
-    {bool isError = true, String title = "Error"}) {
+void showCuastomSnackBAr(
+  String messege, {
+  bool isError = true,
+  String title = "Error",
+}) {
   Get.snackbar(
     title,
     messege,

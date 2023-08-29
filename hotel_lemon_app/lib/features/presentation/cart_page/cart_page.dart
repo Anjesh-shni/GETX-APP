@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hotel_lemon_app/features/getx_controller/map_controller/location_controller.dart';
 import '../../../config/route/routes_helper.dart';
 import '../../../core/base/no_data_page.dart';
 import '../../getx_controller/controller/auth_controller.dart';
@@ -340,7 +341,14 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           if (Get.find<AuthController>().userLoggedIn()) {
-                            cartController.addToHistory();
+                            if (Get.find<LocationController>()
+                                .addressList
+                                .isEmpty) {
+                              Get.toNamed(RouteHelper.getAddressPage());
+                            } else {
+                              cartController.addToHistory();
+                            }
+                            // cartController.addToHistory();
                           } else {
                             Get.snackbar(
                               "PLease login",

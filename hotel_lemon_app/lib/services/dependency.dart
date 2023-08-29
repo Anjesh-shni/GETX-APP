@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:hotel_lemon_app/features/data/repository/locaton_repo.dart';
+import 'package:hotel_lemon_app/features/getx_controller/map_controller/location_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../features/data/api/api_client.dart';
 import '../features/data/repository/auth_repo.dart';
@@ -16,14 +18,12 @@ import '../utils/api_constant.dart';
 Future<void> init() async {
   // //shredPrefrences
   final sharedPrefrences = await SharedPreferences.getInstance();
-
+  //local storage
   Get.lazyPut(() => sharedPrefrences);
 
   // //api clienet
-  Get.lazyPut(
-    () => ApiClient(
-        appBaseUrl: AppConstants.BASE_URL, sharedPreferences: Get.find()),
-  );
+  Get.lazyPut(() => ApiClient(
+      appBaseUrl: AppConstants.BASE_URL, sharedPreferences: Get.find()));
 
   // //Auth reepo
   Get.lazyPut(
@@ -36,6 +36,8 @@ Future<void> init() async {
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
+  Get.lazyPut(
+      () => LocationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   // //for controllers
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
@@ -43,6 +45,6 @@ Future<void> init() async {
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(
       () => RecommendedProductController(recommendedProductRepo: Get.find()));
-
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
+  Get.lazyPut(() => LocationController(locationRepo: Get.find()));
 }

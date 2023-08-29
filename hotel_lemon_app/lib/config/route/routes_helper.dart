@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hotel_lemon_app/features/presentation/address/add_address_page.dart';
 import 'package:hotel_lemon_app/features/presentation/home/homepage.dart';
 import 'package:hotel_lemon_app/features/presentation/auth/sign_up_page.dart';
 import '../../features/presentation/cart_page/cart_page.dart';
@@ -19,6 +20,7 @@ class RouteHelper {
   static const String signIn = "/sign-in";
   static const String signUp = "/sign-up";
   static const String homePage = "/home-page";
+  static const String address = "/address";
 
   ///Route constant refrences
   static String getInitial() => inittial;
@@ -34,6 +36,7 @@ class RouteHelper {
   static String getSignIn() => signIn;
   static String getSignUp() => signUp;
   static String getHomePage() => homePage;
+  static String getAddressPage() => address;
 
   ///All the route list
   static List<GetPage> routes = [
@@ -88,6 +91,13 @@ class RouteHelper {
       name: cartPage,
       page: () {
         return const CartPage();
+      },
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: address,
+      page: () {
+        return const AddAddressPage();
       },
       transition: Transition.fadeIn,
     ),
