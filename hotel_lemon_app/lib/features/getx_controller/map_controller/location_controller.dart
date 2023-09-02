@@ -27,7 +27,7 @@ class LocationController extends GetxController implements GetxService {
   late List<AddressModel> _allAddressList;
   List<AddressModel> get allAddressList => _allAddressList;
   //
-  List<String> _addressTypeList = ["Home", "Office", "Others"];
+  final List<String> _addressTypeList = ["Home", "Office", "Others"];
   List<String> get addressTypeList => _addressTypeList;
   //
   int _selectedAddressTypeIndex = 0;
@@ -175,5 +175,9 @@ class LocationController extends GetxController implements GetxService {
     _addressList = [];
     _allAddressList = [];
     update();
+  }
+
+  getUserAddressFromLocalStorage(){
+    return locationRepo.getUserAddress();
   }
 }

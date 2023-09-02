@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hotel_lemon_app/config/route/routes_helper.dart';
 import 'package:hotel_lemon_app/core/base/show_custom_msg.dart';
 import 'package:hotel_lemon_app/features/domain/model/location_model/location_address_model.dart';
 import 'package:hotel_lemon_app/features/getx_controller/controller/auth_controller.dart';
 import 'package:hotel_lemon_app/features/getx_controller/controller/user_controller.dart';
 import 'package:hotel_lemon_app/features/getx_controller/map_controller/location_controller.dart';
+import 'package:hotel_lemon_app/features/presentation/address/add_address_map.dart';
 import 'package:hotel_lemon_app/features/presentation/widget/app_text_field.dart';
 import 'package:hotel_lemon_app/features/presentation/widget/bigtext.dart';
 import 'package:hotel_lemon_app/features/presentation/widget/smalltext.dart';
@@ -20,7 +22,7 @@ class AddAddressPage extends StatefulWidget {
 }
 
 class _AddAddressPageState extends State<AddAddressPage> {
-  TextEditingController _addressController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   final TextEditingController _contactPersonName = TextEditingController();
   final TextEditingController _contactPersonNumber = TextEditingController();
 
@@ -38,6 +40,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
       Get.find<UserController>().getUserInfo();
     }
     if (Get.find<LocationController>().addressList.isNotEmpty) {
+      //This conditon apply only when user change the device.
+      if (Get.find<LocationController>().getUserAddressFromLocalStorage() ==
+          "") {
+        Get.find<LocationController>()
+            .saveUserAddress(Get.find<LocationController>().addressList.last);
+      }
+
       Get.find<LocationController>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
@@ -50,7 +59,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
       );
     }
   }
-
+// "PurpleBanana$Jump@Moon"
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,11 +108,23 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               mapType: MapType.hybrid,
                               initialCameraPosition: CameraPosition(
                                   target: _initalPosition, zoom: 16),
+                              onTap: (latLng) {
+                                Get.toNamed(
+                                  RouteHelper.getAddAddressOnMap(),
+                                  arguments: AddAddressOnMap(
+                                    fromSignUp: false,
+                                    fomAddressPagr: true,
+                                    googleMapController:
+                                        locationController.mapController,
+                                  ),
+                                );
+                              },
                               zoomControlsEnabled: true,
                               compassEnabled: false,
                               indoorViewEnabled: true,
                               mapToolbarEnabled: false,
                               myLocationButtonEnabled: true,
+                              myLocationEnabled: true,
                               onCameraIdle: () {
                                 locationController.updatePosition(
                                   _cameraPosition,
@@ -272,7 +293,6 @@ class _AddAddressPageState extends State<AddAddressPage> {
           );
         },
       ),
-  
     );
   }
 }

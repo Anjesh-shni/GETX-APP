@@ -5,7 +5,7 @@ class AppConstants {
   static const int APP_VERSION = 1;
   //API End point
   // static const String BASE_URL = "http://127.0.0.1:8000";
-  static const String BASE_URL = "http://192.168.101.5:8000";
+  static const String BASE_URL = "http://192.168.101.8:8000";
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String BIRYANI = "/api/v1/products/biryani";
