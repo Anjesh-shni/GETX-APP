@@ -109,8 +109,7 @@ class AccountPage extends StatelessWidget {
                                     locationController.addressList.isNotEmpty) {
                                   return GestureDetector(
                                     onTap: () {
-                                      Get.offNamed(
-                                          RouteHelper.getAddressPage());
+                                      Get.toNamed(RouteHelper.getAddressPage());
                                     },
                                     child: AccountWidget(
                                       appIcon: AppIcon(

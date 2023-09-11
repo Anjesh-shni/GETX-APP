@@ -36,6 +36,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   void initState() {
     super.initState();
     _isloggedIn = Get.find<AuthController>().userLoggedIn();
+    // ignore: unnecessary_null_comparison
     if (_isloggedIn && Get.find<UserController>().userModel == null) {
       Get.find<UserController>().getUserInfo();
     }
@@ -59,6 +60,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
       );
     }
   }
+
 // "PurpleBanana$Jump@Moon"
   @override
   Widget build(BuildContext context) {
@@ -72,6 +74,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
           )),
       body: GetBuilder<UserController>(
         builder: (userController) {
+          // ignore: unnecessary_null_comparison
           if (userController.userModel != null &&
               _contactPersonName.text.isEmpty) {
             _contactPersonName.text = '${userController.userModel.name}';
@@ -105,7 +108,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         child: Stack(
                           children: [
                             GoogleMap(
-                              mapType: MapType.hybrid,
+                              mapType: MapType.satellite,
                               initialCameraPosition: CameraPosition(
                                   target: _initalPosition, zoom: 16),
                               onTap: (latLng) {
@@ -244,18 +247,20 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     SizedBox(height: Dimen.height20),
                     GestureDetector(
                       onTap: () {
-                        print("im save user addree");
                         AddressModel _addressModel = AddressModel(
+                          id: userController.userModel.id,
                           addressType: locationController.addressTypeList[
                               locationController.selectedAddresstypeIndex],
                           contactPersonName: _contactPersonName.text,
-                          contactPersonNumber: _contactPersonName.text,
+                          contactPersonNumber: _contactPersonNumber.text,
                           address: _addressController.text,
                           latitude:
                               locationController.position.latitude.toString(),
                           longitude:
                               locationController.position.longitude.toString(),
                         );
+                        print("address model ===== " +
+                            _addressModel.id.toString());
                         locationController
                             .addUserAddress(_addressModel)
                             .then((response) {
@@ -264,7 +269,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             showCuastomSnackBAr("Address updated succesfully");
                           } else {
                             showCuastomSnackBAr(
-                                "Coudn't able to update address");
+                              "Coudn't able to update your address",
+                            );
                           }
                         });
                       },

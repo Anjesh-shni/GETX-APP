@@ -7,14 +7,13 @@ import '../../features/getx_controller/controller/cart_controller.dart';
 import '../../features/getx_controller/controller/popular_product_controller.dart';
 import '../../features/getx_controller/controller/recommended_product_controller.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.green,
+      statusBarColor: Colors.transparent,
     ));
     return GetBuilder<PopularProductController>(
       builder: (_) {
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
             return GetBuilder<CartController>(
               builder: (_) {
                 return GetMaterialApp(
-                  debugShowCheckedModeBanner: false,
+                  debugShowCheckedModeBanner: true,
                   title: 'Hotel Lemon',
                   theme: ThemeData().copyWith(
                     scaffoldBackgroundColor: ApClrs.backGroundColor,

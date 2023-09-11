@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/api_constant.dart';
@@ -12,7 +13,7 @@ class ApiClient extends GetConnect implements GetxService {
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 20);
-    token = sharedPreferences.getString(AppConstants.TOKEN)!;
+    token = sharedPreferences.getString(AppConstants.TOKEN) ?? "";
 
     // AppConstants.TOKEN;
 
@@ -38,6 +39,7 @@ class ApiClient extends GetConnect implements GetxService {
   }
 
   Future<Response> postData(String uri, dynamic body) async {
+    debugPrint(body.toString());
     try {
       Response response = await post(uri, body, headers: _mainHeaders);
       return response;

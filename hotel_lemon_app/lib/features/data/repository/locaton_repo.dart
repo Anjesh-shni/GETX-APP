@@ -13,7 +13,7 @@ class LocationRepo {
   LocationRepo({required this.apiClient, required this.sharedPreferences});
 
   Future<Response> getAddressFromGeoCode(LatLng latLng) async {
-    print("i get calllled");
+    print("getting lat & lan get calllled");
     return await apiClient.getData('${AppConstants.GEO_CODE_URI}'
         '?lat=${latLng.latitude}&lng=${latLng.longitude}');
   }
@@ -23,7 +23,9 @@ class LocationRepo {
   }
 
   Future<Response> addUserAddress(AddressModel addressModel) async {
-    return apiClient.post(AppConstants.ADD_USER_ADDRESS, addressModel.toJson());
+    print("location repository get called" + addressModel.address.toString());
+    return apiClient.postData(
+        AppConstants.ADD_USER_ADDRESS, addressModel.toJson());
   }
 
   Future<Response> getAllAddressList() async {
@@ -31,8 +33,10 @@ class LocationRepo {
   }
 
   Future<bool> saveUserAddress(String userAddress) async {
+    print("SAving to local torage" + userAddress);
+    //saving  user address in local storage
     apiClient.updateHeader(sharedPreferences.getString(AppConstants.TOKEN)!);
     return await sharedPreferences.setString(
-        AppConstants.ADD_USER_ADDRESS, userAddress);
+        AppConstants.USER_ADDRESS, userAddress);
   }
 }

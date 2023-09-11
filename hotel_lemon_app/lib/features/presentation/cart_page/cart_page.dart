@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hotel_lemon_app/features/getx_controller/map_controller/location_controller.dart';
 import '../../../config/route/routes_helper.dart';
 import '../../../core/base/no_data_page.dart';
+import '../../../core/base/show_custom_msg.dart';
 import '../../getx_controller/controller/auth_controller.dart';
 import '../../getx_controller/controller/cart_controller.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
@@ -346,6 +347,8 @@ class CartPage extends StatelessWidget {
                                 .isEmpty) {
                               Get.toNamed(RouteHelper.getAddressPage());
                             } else {
+                              // cartController.addToHistory();
+                              // showCuastomSnackBAr("Add address");
                               cartController.addToHistory();
                             }
                             // cartController.addToHistory();
