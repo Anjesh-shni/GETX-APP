@@ -3,7 +3,7 @@ import '../../features/presentation/cart_page/cart_history_page.dart';
 import '../../features/presentation/cart_page/cart_page.dart';
 import '../../features/presentation/home/homepage.dart';
 import '../../features/presentation/account/account_page.dart';
-import '../../features/presentation/widget/alert_dailouge.dart';
+import '../../features/presentation/reusable_widget/alert_dailouge.dart';
 
 class HomeNav extends StatefulWidget {
   const HomeNav({

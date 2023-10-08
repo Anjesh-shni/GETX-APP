@@ -6,8 +6,8 @@ import '../../../utils/api_constant.dart';
 import '../../domain/model/main_model/popular_product_mooel.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
 import '../../getx_controller/controller/recommended_product_controller.dart';
-import '../widget/bigtext.dart';
-import '../widget/smalltext.dart';
+import '../reusable_widget/bigtext.dart';
+import '../reusable_widget/smalltext.dart';
 import 'package:get/get.dart';
 
 class FoodPageBody extends StatefulWidget {

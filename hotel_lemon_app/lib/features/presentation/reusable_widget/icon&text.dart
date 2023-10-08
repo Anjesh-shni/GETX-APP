@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/smalltext.dart';
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/smalltext.dart';
 import '../../../utils/app_dimension.dart';
 class IconAndText extends StatelessWidget {
   final IconData icon;

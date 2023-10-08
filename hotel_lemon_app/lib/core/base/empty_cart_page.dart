@@ -5,8 +5,8 @@ import 'package:lottie/lottie.dart';
 
 import '../../config/route/routes_helper.dart';
 import '../../utils/app_dimension.dart';
-import '../../features/presentation/widget/app_icon.dart';
-import '../../features/presentation/widget/bigtext.dart';
+import '../../features/presentation/reusable_widget/app_icon.dart';
+import '../../features/presentation/reusable_widget/bigtext.dart';
 
 class EmptyCart extends StatefulWidget {
   const EmptyCart({Key? key}) : super(key: key);

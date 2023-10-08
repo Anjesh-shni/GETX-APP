@@ -12,6 +12,7 @@ class AuthController extends GetxController implements GetxService {
   bool get isLoading => _isLoading;
 
   Future<ResponseModel> registration(SignUpBody signUpBody) async {
+    //Create user account
     _isLoading = true;
     update();
     Response response = await authRepo.registration(signUpBody);
@@ -29,6 +30,7 @@ class AuthController extends GetxController implements GetxService {
   }
 
   Future<ResponseModel> login(String phone, String password) async {
+    //Login method
     // print("getting token" + authRepo.getUserToken().toString());
     _isLoading = true;
     update();
@@ -40,6 +42,7 @@ class AuthController extends GetxController implements GetxService {
       print(response.body["token"].toString());
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
+      //Error text from getX model itself i,e= statusText
       responseModel = ResponseModel(false, response.statusText!);
     }
     _isLoading = false;
@@ -48,14 +51,17 @@ class AuthController extends GetxController implements GetxService {
   }
 
   void saveUserNumberAndPassword(String number, String password) {
+    //Saving credentials
     authRepo.saveUserNumberAndPassword(number, password);
   }
 
   bool userLoggedIn() {
+    //Boolean to check either user logged-in or NOt
     return authRepo.userLoggedIn();
   }
 
   bool clearSharedData() {
+    //Remove data from sharedPrefrences
     return authRepo.clearSharedData();
   }
 }

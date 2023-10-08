@@ -7,7 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hotel_lemon_app/features/data/repository/locaton_repo.dart';
 import 'package:hotel_lemon_app/features/domain/model/location_model/location_address_model.dart';
 import 'package:hotel_lemon_app/features/domain/model/main_model/response_model.dart';
-import '../../../core/base/show_custom_msg.dart';
+import '../../../core/exception/show_custom_msg.dart';
 
 class LocationController extends GetxController implements GetxService {
   final LocationRepo locationRepo;
@@ -35,7 +35,7 @@ class LocationController extends GetxController implements GetxService {
   late GoogleMapController _mapController;
   GoogleMapController get mapController => _mapController;
   //
-  final bool _updatedPositionData = true;
+  bool _updatedPositionData = true;
   final bool _changeAddress = true;
 
   //getter
@@ -82,7 +82,8 @@ class LocationController extends GetxController implements GetxService {
         }
 
         if (_changeAddress) {
-          print("Updating new address.......................3");
+          print(
+              "Updating new address::::Changing address.......................3");
           //talking to the erver from here
           String _address = await getAddressFromGeoCode(LatLng(
             position.target.latitude,
@@ -93,18 +94,22 @@ class LocationController extends GetxController implements GetxService {
               : _pickplacemark = Placemark(name: _address);
         }
       } catch (e) {
-        showCuastomSnackBAr("my error $e");
+        showCuastomSnackBAr("something went wrong $e");
       }
+      _loading = false;
+      update();
+    } else {
+      _updatedPositionData = true;
     }
   }
 
-//
+  //new address getting
   Future<String> getAddressFromGeoCode(LatLng latlang) async {
     String _address = "Unknown location";
     Response response = await locationRepo.getAddressFromGeoCode(latlang);
     if (response.body["status"] == "OK") {
       _address = response.body["results"][0]["formatted_address"].toString();
-      print("my address = " + _address);
+      print("my address:::::::::::::::::::" + _address);
     } else {
       showCuastomSnackBAr("Error getting google location api");
     }
@@ -115,10 +120,10 @@ class LocationController extends GetxController implements GetxService {
   late Map<String, dynamic> _getAddress;
   Map get getAddress => _getAddress;
 
-//
+  //
   AddressModel getUserAddress() {
     late AddressModel _addressModel;
-    _getAddress =jsonDecode(locationRepo.getUserAddress());
+    _getAddress = jsonDecode(locationRepo.getUserAddress());
     try {
       _addressModel =
           AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
@@ -157,9 +162,13 @@ class LocationController extends GetxController implements GetxService {
   }
 
   Future<void> getAddressList() async {
-    print("Get addressList method called    ........4");
+    //this the get request where we get all the data from server
+
     Response response = await locationRepo.getAllAddressList();
     if (response.statusCode == 200) {
+      print(
+          "User address from locationController getAddresslist method:::::::::::" +
+              response.body);
       _addressList = [];
       _allAddressList = [];
       response.body.forEach((address) {
@@ -187,7 +196,15 @@ class LocationController extends GetxController implements GetxService {
     update();
   }
 
-  getUserAddressFromLocalStorage() {
+  //Get user address from local storage
+  String getUserAddressFromLocalStorage() {
     return locationRepo.getUserAddress();
+  }
+
+  void setAddAddressData() {
+    _position = _pickPosition;
+    _placemark = _pickplacemark;
+    _updatedPositionData = false;
+    update();
   }
 }

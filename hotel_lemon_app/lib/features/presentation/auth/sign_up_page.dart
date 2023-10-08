@@ -2,14 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/base/custom_loader.dart';
-import '../../../core/base/show_custom_msg.dart';
+import '../../../core/exception/show_custom_msg.dart';
 import '../../domain/model/main_model/sign_up_body.dart';
 import '../../../config/route/routes_helper.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/auth_controller.dart';
-import '../widget/app_text_field.dart';
-import '../widget/bigtext.dart';
+import '../reusable_widget/app_text_field.dart';
+import '../reusable_widget/bigtext.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);

@@ -2,13 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/base/custom_loader.dart';
-import '../../../core/base/show_custom_msg.dart';
+import '../../../core/exception/show_custom_msg.dart';
 import '../../../config/route/routes_helper.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/auth_controller.dart';
-import '../widget/app_text_field.dart';
-import '../widget/bigtext.dart';
+import '../reusable_widget/app_text_field.dart';
+import '../reusable_widget/bigtext.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -97,17 +97,19 @@ class SignInPage extends StatelessWidget {
                         ),
                       ),
                       AppTextField(
-                          icon: Icons.phone,
-                          textController: emailController,
-                          hintText: "Phone"),
+                        icon: Icons.phone,
+                        textController: emailController,
+                        hintText: "Phone",
+                      ),
                       SizedBox(
                         height: Dimen.height20,
                       ),
                       AppTextField(
-                          isObscure: true,
-                          icon: Icons.password,
-                          textController: passwordController,
-                          hintText: "Password"),
+                        isObscure: true,
+                        icon: Icons.password,
+                        textController: passwordController,
+                        hintText: "Password",
+                      ),
                       SizedBox(
                         height: Dimen.height10,
                       ),

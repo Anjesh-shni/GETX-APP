@@ -11,6 +11,7 @@ class CartRepo {
 
   // Sharedprefrences data ok..........................................................
   void addToCartlist(List<CartModel> cartList) {
+    ///Whenever need to remove the data of cart history.
     // sharedPreferences.remove(AppConstants.CART_LIST);
     // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     var time = DateTime.now().toString();
@@ -20,13 +21,12 @@ class CartRepo {
       element.time = time;
       return cart.add(jsonEncode(element));
     });
-
+    //storing cart list data to local storage
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-
     getCartList();
   }
 
-  //ok................................................................................
+  //Cart list tested ok.......................................................
   List<CartModel> getCartList() {
     List<String> carts = [];
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
@@ -34,8 +34,8 @@ class CartRepo {
       // print("inside cart list....................." + carts.toString());
     }
 
+    ///For cart history
     List<CartModel> cartList = [];
-
     carts.forEach((element) {
       cartList.add(CartModel.fromJson(jsonDecode(element)));
     });
@@ -43,20 +43,21 @@ class CartRepo {
     return cartList;
   }
 
-  //for CartSummary Data show ok.........................................................
+  //Cart history data tested ok.........................................................
   List<CartModel> getCartHistoryList() {
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
       cartHistory = [];
       cartHistory =
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
+    //iterate each item and adding  to cartHistory list
     List<CartModel> cartListHistory = [];
     cartHistory.forEach((element) =>
         cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
     return cartListHistory;
   }
 
-  // For checkOut button onTap ok.....................................................
+  // For checkOut button onTap list will save to cart history.....................................................
   void addToCartHistoryList() {
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
       cartHistory =

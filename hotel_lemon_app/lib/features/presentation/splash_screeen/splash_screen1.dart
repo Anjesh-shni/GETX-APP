@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hotel_lemon_app/utils/app_dimension.dart';
 import 'package:lottie/lottie.dart';
 import '../../../config/route/routes_helper.dart';
 import '../../getx_controller/controller/cart_controller.dart';
@@ -40,7 +41,7 @@ class SplashScreenState extends State<SplashScreen>
           Lottie.asset(
             "assets/animation/abstract.json",
             width: double.infinity,
-            height: 300,
+            height: Dimen.height10*30,
             repeat: true,
           ),
         ],

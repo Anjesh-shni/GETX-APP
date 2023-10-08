@@ -4,10 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/api_constant.dart';
 
 class ApiClient extends GetConnect implements GetxService {
+  ///Variable to store
   late String token;
   final String appBaseUrl;
   late SharedPreferences sharedPreferences;
-
   late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {

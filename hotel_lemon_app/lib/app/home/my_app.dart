@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
                   title: 'Hotel Lemon',
                   theme: ThemeData().copyWith(
                     scaffoldBackgroundColor: ApClrs.backGroundColor,
+                    primaryColor: ApClrs.mainClr,
                   ),
                   initialRoute: RouteHelper.getSplashPage(),
                   getPages: RouteHelper.routes,

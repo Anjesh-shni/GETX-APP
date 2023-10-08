@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_lemon_app/utils/app_dimension.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/smalltext.dart';
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/smalltext.dart';
 
 
 import '../../../utils/app_colors.dart';

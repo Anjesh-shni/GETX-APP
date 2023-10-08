@@ -6,10 +6,10 @@ import '../../../utils/api_constant.dart';
 import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/cart_controller.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
-import '../widget/app_column.dart';
-import '../widget/app_icon.dart';
-import '../widget/bigtext.dart';
-import '../widget/expandble_text.dart';
+import '../reusable_widget/app_column.dart';
+import '../reusable_widget/app_icon.dart';
+import '../reusable_widget/bigtext.dart';
+import '../reusable_widget/expandble_text.dart';
 
 class PopularFoodDetails extends StatelessWidget {
   final int index;

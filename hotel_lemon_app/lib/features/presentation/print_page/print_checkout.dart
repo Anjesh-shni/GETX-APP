@@ -8,9 +8,9 @@ import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/cart_controller.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
 import '../../getx_controller/controller/recommended_product_controller.dart';
-import '../widget/app_icon.dart';
-import '../widget/bigtext.dart';
-import '../widget/smalltext.dart';
+import '../reusable_widget/app_icon.dart';
+import '../reusable_widget/bigtext.dart';
+import '../reusable_widget/smalltext.dart';
 
 class PrintCheckout extends StatelessWidget {
   const PrintCheckout({

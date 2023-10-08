@@ -7,3 +7,4 @@ void main() async {
   await dep.init();
   runApp(const MyApp());
 }
+

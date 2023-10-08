@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hotel_lemon_app/config/route/routes_helper.dart';
-import 'package:hotel_lemon_app/core/base/show_custom_msg.dart';
+import 'package:hotel_lemon_app/core/exception/show_custom_msg.dart';
 import 'package:hotel_lemon_app/features/domain/model/location_model/location_address_model.dart';
 import 'package:hotel_lemon_app/features/getx_controller/controller/auth_controller.dart';
 import 'package:hotel_lemon_app/features/getx_controller/controller/user_controller.dart';
 import 'package:hotel_lemon_app/features/getx_controller/map_controller/location_controller.dart';
-import 'package:hotel_lemon_app/features/presentation/address/add_address_map.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/app_text_field.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/bigtext.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/smalltext.dart';
+import 'package:hotel_lemon_app/features/presentation/address/pick_address_from_map.dart';
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/app_text_field.dart';
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/bigtext.dart';
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/smalltext.dart';
 import 'package:hotel_lemon_app/utils/app_colors.dart';
 import 'package:hotel_lemon_app/utils/app_dimension.dart';
 
@@ -27,9 +27,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
   final TextEditingController _contactPersonNumber = TextEditingController();
 
   late bool _isloggedIn;
+  //default address on map, when we load for the first time
   CameraPosition _cameraPosition =
       const CameraPosition(target: LatLng(27.7172, 85.3240), zoom: 16);
-
+  //default address on map, when we load for the first time
   late LatLng _initalPosition = const LatLng(27.7172, 85.3240);
 
   @override
@@ -40,8 +41,11 @@ class _AddAddressPageState extends State<AddAddressPage> {
     if (_isloggedIn && Get.find<UserController>().userModel == null) {
       Get.find<UserController>().getUserInfo();
     }
+
+    //only user address is not empty
     if (Get.find<LocationController>().addressList.isNotEmpty) {
       //This conditon apply only when user change the device.
+      //user address from local storage
       if (Get.find<LocationController>().getUserAddressFromLocalStorage() ==
           "") {
         Get.find<LocationController>()
@@ -49,6 +53,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
       }
 
       Get.find<LocationController>().getUserAddress();
+      //getting address from database, only if user is already logged in.
       _cameraPosition = CameraPosition(
           target: LatLng(
         double.parse(Get.find<LocationController>().getAddress["latitude"]),
@@ -61,7 +66,6 @@ class _AddAddressPageState extends State<AddAddressPage> {
     }
   }
 
-// "PurpleBanana$Jump@Moon"
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,11 +114,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             GoogleMap(
                               mapType: MapType.satellite,
                               initialCameraPosition: CameraPosition(
-                                  target: _initalPosition, zoom: 16),
+                                  //from databse value
+                                  target: _initalPosition,
+                                  zoom: 16),
                               onTap: (latLng) {
                                 Get.toNamed(
                                   RouteHelper.getAddAddressOnMap(),
                                   arguments: AddAddressOnMap(
+                                    //Ontap event pasing page with some value as a argument
                                     fromSignUp: false,
                                     fomAddressPagr: true,
                                     googleMapController:
@@ -129,15 +136,23 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               myLocationButtonEnabled: true,
                               myLocationEnabled: true,
                               onCameraIdle: () {
+                                //this method will get called when user move the map and select new address
                                 locationController.updatePosition(
                                   _cameraPosition,
                                   true,
                                 );
                               },
                               onCameraMove: ((position) =>
+                                  //this method is most imporatant part for map address update
                                   _cameraPosition = position),
                               onMapCreated: (GoogleMapController controller) {
                                 locationController.setMapController(controller);
+                                if (Get.find<LocationController>()
+                                    .addressList
+                                    .isEmpty) {
+                                  //
+                                //  locationController.setMapController(controller);
+                                }
                               },
                             ),
                           ],
@@ -265,8 +280,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             .addUserAddress(_addressModel)
                             .then((response) {
                           if (response.isSuccess) {
-                            Get.back();
-                            showCuastomSnackBAr("Address updated succesfully");
+                            Get.toNamed(RouteHelper.getInitial());
+                            Get.snackbar(
+                                "Address", "Address added succesfully");
                           } else {
                             showCuastomSnackBAr(
                               "Coudn't able to update your address",

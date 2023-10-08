@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/bigtext.dart';
-
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/bigtext.dart';
 import '../../utils/app_colors.dart';
 
 void showCuastomSnackBAr(

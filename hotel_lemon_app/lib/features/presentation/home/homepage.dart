@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../getx_controller/controller/cart_controller.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
 import '../../getx_controller/controller/recommended_product_controller.dart';
-import '../widget/smalltext.dart';
+import '../reusable_widget/smalltext.dart';
 import 'food_page_body.dart';
 
 class HomePage extends StatefulWidget {

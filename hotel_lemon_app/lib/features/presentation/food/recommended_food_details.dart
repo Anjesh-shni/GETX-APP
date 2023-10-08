@@ -7,10 +7,10 @@ import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/cart_controller.dart';
 import '../../getx_controller/controller/popular_product_controller.dart';
 import '../../getx_controller/controller/recommended_product_controller.dart';
-import '../widget/app_column.dart';
-import '../widget/app_icon.dart';
-import '../widget/bigtext.dart';
-import '../widget/expandble_text.dart';
+import '../reusable_widget/app_column.dart';
+import '../reusable_widget/app_icon.dart';
+import '../reusable_widget/bigtext.dart';
+import '../reusable_widget/expandble_text.dart';
 
 class RecommendedFoodDetails extends StatelessWidget {
   final int index;

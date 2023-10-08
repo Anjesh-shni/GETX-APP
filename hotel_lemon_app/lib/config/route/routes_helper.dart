@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:hotel_lemon_app/features/presentation/address/add_address_map.dart';
+import 'package:hotel_lemon_app/features/presentation/address/pick_address_from_map.dart';
 import 'package:hotel_lemon_app/features/presentation/address/add_address_page.dart';
 import 'package:hotel_lemon_app/features/presentation/home/homepage.dart';
 import 'package:hotel_lemon_app/features/presentation/auth/sign_up_page.dart';
@@ -11,6 +11,7 @@ import '../../app/home/home_navigation.dart';
 import '../../features/presentation/splash_screeen/splash_screen1.dart';
 
 class RouteHelper {
+  RouteHelper._();
   ///Route constant
   static const String inittial = "/";
   static const String tablePage = "/table-page";
@@ -24,7 +25,7 @@ class RouteHelper {
   static const String address = "/address";
   static const String addAddressOnMap = "/addAddressOnMap";
 
-  ///Route constant refrences
+  ///Route constant refrences getter
   static String getInitial() => inittial;
   static String getTablePage() => tablePage;
   static String getSplashPage() => splashPage;
@@ -41,7 +42,7 @@ class RouteHelper {
   static String getAddressPage() => address;
   static String getAddAddressOnMap() => "$addAddressOnMap";
 
-  ///All the route list
+  ///All the route list are place here
   static List<GetPage> routes = [
     GetPage(
       name: inittial,
@@ -86,7 +87,10 @@ class RouteHelper {
         final page = Get.parameters["page"];
         var index = Get.parameters["index"];
         return RecommendedFoodDetails(
-            pageId: int.parse(pageId!), index: int.parse(index!), page: page!);
+          pageId: int.parse(pageId!),
+          index: int.parse(index!),
+          page: page!,
+        );
       },
       transition: Transition.fadeIn,
     ),
@@ -107,7 +111,8 @@ class RouteHelper {
     GetPage(
       name: addAddressOnMap,
       page: () {
-       AddAddressOnMap _addAddressOnMap=Get.arguments;
+        //pasing whole page as a argument
+        AddAddressOnMap _addAddressOnMap = Get.arguments;
         return _addAddressOnMap;
       },
       transition: Transition.fadeIn,

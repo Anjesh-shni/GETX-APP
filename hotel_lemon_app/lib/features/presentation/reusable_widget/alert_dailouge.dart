@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/bigtext.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/custom_button.dart';
-import 'package:hotel_lemon_app/features/presentation/widget/smalltext.dart';
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/bigtext.dart';
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/custom_button.dart';
+import 'package:hotel_lemon_app/features/presentation/reusable_widget/smalltext.dart';
 import 'package:hotel_lemon_app/utils/app_colors.dart';
 import '../../../utils/app_dimension.dart';
 

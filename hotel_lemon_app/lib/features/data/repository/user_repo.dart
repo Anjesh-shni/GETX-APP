@@ -8,6 +8,7 @@ class UserRepo {
   UserRepo({required this.apiClient});
 
   Future<Response> getUserInfo() async {
+    //Getting user information
     return await apiClient.getData(AppConstants.USER_INFO);
   }
 }

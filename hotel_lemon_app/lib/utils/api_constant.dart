@@ -6,7 +6,7 @@ class AppConstants {
   //API End point
   // static const String BASE_URL = "http://127.0.0.1:8000";
   static const String BASE_URL =
-      "https://004f-2404-7c00-48-24d9-5dc1-8844-ae91-60ee.ngrok-free.app";
+      "https://2759-2404-7c00-44-2015-2866-cda2-7810-7f3f.ngrok-free.app";
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String BIRYANI = "/api/v1/products/biryani";

@@ -15,6 +15,8 @@ class AddressModel {
     latitude,
     longitude,
   }) {
+    //Assinging each field from super constructor
+    //
     _id = id;
     _addressType = addressType;
     _contactPersonName = contactPersonName;
@@ -23,6 +25,7 @@ class AddressModel {
     _latitude = latitude;
     _longitude = longitude;
   }
+  //Getter for every field
   int? get id => _id;
   String get address => _address;
   String get addressType => _addressType;
@@ -32,6 +35,7 @@ class AddressModel {
   String get longitude => _longitude;
 
   AddressModel.fromJson(Map<String, dynamic> json) {
+    //For making get request
     _id = json['id'];
     _addressType = json['address_type'] ?? "";
     _contactPersonName = json['contact_person_name'] ?? "";
@@ -42,6 +46,7 @@ class AddressModel {
   }
 
   Map<String, dynamic> toJson() {
+    //Post request
     final Map<String, dynamic> data = Map<String, dynamic>();
     data["id"] = this._id;
     data["address_type"] = this._addressType;

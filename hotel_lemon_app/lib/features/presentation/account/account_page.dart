@@ -8,10 +8,10 @@ import '../../../utils/app_dimension.dart';
 import '../../getx_controller/controller/auth_controller.dart';
 import '../../getx_controller/controller/cart_controller.dart';
 import '../../getx_controller/controller/user_controller.dart';
-import '../widget/accoun_widget.dart';
-import '../widget/app_icon.dart';
-import '../widget/bigtext.dart';
-import '../widget/custom_button.dart';
+import '../reusable_widget/accoun_widget.dart';
+import '../reusable_widget/app_icon.dart';
+import '../reusable_widget/bigtext.dart';
+import '../reusable_widget/custom_button.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
